@@ -147,8 +147,9 @@ app.post("/purchase", async (req, res) => {
 });
 
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(
-    `Fulfillment API Server is running on port http://localhost:${PORT}`
-  );
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Fulfillment API Server is running on port http://localhost:${PORT}`);
+  });
+}
+export default app;
